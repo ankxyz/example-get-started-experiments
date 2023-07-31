@@ -25,7 +25,7 @@ stages:
       nfiles: 24
   train:
     cmd: yolo settings datasets_dir=data dvc=false && python src/train.py --data data/yolo_dataset.yaml
-      --epochs 30 --imgsz 512 --model yolov8n-seg.pt
+      --epochs 5 --imgsz 64 --model yolov8n-seg.pt
     deps:
     - path: data/yolo_dataset/train
       hash: md5
@@ -39,5 +39,28 @@ stages:
       nfiles: 24
     - path: src/train.py
       hash: md5
-      md5: 8b9f16b74950cbb6b86df9c45b004fdf
-      size: 2850
+      md5: b3cbd205819f2e744e7a371495e31c6f
+      size: 2890
+    outs:
+    - path: results/train/artifacts/best.pt
+      hash: md5
+      md5: bebf9095bc18dc7426dbdc6aef26dd93
+      size: 6716472
+    - path: results/train/metrics.json
+      hash: md5
+      md5: 2bc452a98e1c1da8ef6ae93e22a2764b
+      size: 671
+    - path: results/train/plots/images
+      hash: md5
+      md5: 4df9f16e4b2652a706bfae9f6180afa4.dir
+      size: 60845
+      nfiles: 6
+    - path: results/train/plots/metrics
+      hash: md5
+      md5: a89e6e8113877344de6ad97d649ffa01.dir
+      size: 900
+      nfiles: 16
+    - path: results/train/plots/sklearn/confusion_matrix.json
+      hash: md5
+      md5: 4e9ed0d66116d971e50b790a3b1b17c9
+      size: 3611

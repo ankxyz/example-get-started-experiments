@@ -13,3 +13,26 @@ stages:
     - data/yolo_dataset/train
     - data/yolo_dataset/val
     - src/train.py
+    metrics:
+    - results/train/metrics.json
+    plots:
+    - results/train/plots/metrics:
+        x: step
+    - results/train/plots/images
+    - results/train/plots/sklearn/confusion_matrix.json:
+        template: confusion
+        x: actual
+        y: predicted
+        title: Confusion Matrix
+        x_label: True Label
+        y_label: Predicted Label
+    outs:
+    - results/train/artifacts/best.pt:
+        type: model
+        desc: This is a Computer Vision (CV) model that's segmenting out swimming pools
+          from satellite images.
+        labels:
+        - cv
+        - segmentation
+        - satellite-images
+        - yolo

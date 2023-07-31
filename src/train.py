@@ -68,9 +68,11 @@ def add_callbacks(live, yolo):
 def train(data: str = "data/yolo_dataset.yaml", epochs: int = 10, imgsz: int = 384, model: str = "yolov8n-seg.pt"):
     yolo = YOLO(model)
 
+    print(f'imgsz = {imgsz}')
+
     with Live("results/train", save_dvc_exp=True, report=None, cache_images=True) as live:
         yolo = add_callbacks(live, yolo)
-        yolo.train(data=data, epochs=epochs, imgsz=imgsz)
+        yolo.train(data=data, epochs=epochs, imgsz=imgsz, batch=2)
 
     try:
         os.remove("data/yolo_dataset/train.cache")
