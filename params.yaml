@@ -4,6 +4,7 @@ create_yolo_dataset:
 
 train:
   data: data/yolo_dataset.yaml
-  epochs: 30
-  imgsz: 512
+  epochs: 5
+  # imgsz: 512
+  imgsz: 64
   model: yolov8n-seg.pt
